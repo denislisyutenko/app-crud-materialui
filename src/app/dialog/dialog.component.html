@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Форма додавання товару</h1>
+
+<div mat-dialog-content>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Найменування товару</mat-label>
+    <input matInput placeholder="Введіть назву товару" required>
+  </mat-form-field>
+
+  <h4>mat-select</h4>
+  <mat-form-field appearance="outline">
+    <mat-label>Категория товара</mat-label>
+    <mat-select placeholder="Введите категорию товара">
+      <mat-option [value]="'pc'">Комп'ютери</mat-option>
+      <mat-option [value]="'tablet'">Планшети</mat-option>
+      <mat-option [value]="'monitor'">Монітори</mat-option>
+      <mat-option [value]="'notebook'">Ноутбуки</mat-option>
+      <mat-option [value]="'server'">Сервери</mat-option>
+      <mat-option [value]="'office'">Оргтехніка</mat-option>
+      <mat-option [value]="'acoustic'">Акустика</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Виберіть дату</mat-label>
+    <input [matDatepicker]="datepicker" matInput>
+    <mat-datepicker-toggle [for]="datepicker" matIconSuffix></mat-datepicker-toggle>
+    <mat-datepicker #datepicker></mat-datepicker>
+  </mat-form-field>
+
+  <label id="example-radio-group-label">
+    <h2>Стан товару</h2>
+  </label>
+  <mat-radio-group aria-labelledby="example-radio-group-label"
+                   class="example-radio-group">
+    <mat-radio-button *ngFor="let el of productConditionList"
+                      [value]="el.value" class="example-radio-button">
+      {{el.caption}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ціна, $</mat-label>
+    <input matInput placeholder="Введіть назву товару" required type="number">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Додаткова інформація</mat-label>
+    <textarea cdkAutosizeMaxRows="5"
+              cdkAutosizeMinRows="1"
+              cdkTextareaAutosize
+              matInput
+              placeholder="Опис товару..."
+              s></textarea>
+  </mat-form-field>
+
+</div>
