@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpService} from '../services/http.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
@@ -17,19 +19,26 @@ export class DialogComponent implements OnInit {
     date: ['', [Validators.required]],
   });
 
-  productConditionList = [
-    {value: 'new', caption: 'Новий'},
-    {value: 'used', caption: 'Б/в'},
-    {value: 'new', caption: 'Після ремонту'},
-  ];
+  productConditionList = ['Новий', 'Б/в', 'Після ремонту'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private httpService: HttpService,
+              private dialogRef: MatDialogRef<DialogComponent>) {
   }
 
   ngOnInit(): void {
   }
 
   addProduct(): void {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      this.httpService.createData(this.form.value).subscribe({
+        next: (res) => {
+          console.log('product added:', res);
+          this.form.reset();
+          this.dialogRef.close('created');
+        },
+        error: (err) => console.log(err)
+      });
+    }
   }
 }

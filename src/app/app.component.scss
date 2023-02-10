@@ -2,7 +2,35 @@
   flex: 1 1 auto;
 }
 
+.toolbar,
 .mat-toolbar {
   background: #3f51b5;
   color: #fff;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-left: 20px;
+}
+
+.comment {
+  width: 30%;
+}
+
+.actions {
+  width: 130px;
 }
